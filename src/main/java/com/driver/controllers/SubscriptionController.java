@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("subscription")
 public class SubscriptionController {
 
-    @Autowired
-    SubscriptionService subscriptionService;
+
+    SubscriptionService subscriptionService=new SubscriptionService();
 
     @PostMapping("/buy")
     public Integer buySubscription(SubscriptionEntryDto subscriptionEntryDto){
@@ -27,7 +27,7 @@ public class SubscriptionController {
     }
 
 
-    @PutMapping("/upgradeSubscription/{userId}")
+        @PutMapping("/upgradeSubscription/{userId}")
     public Integer upgradeSubscription(@PathVariable("userId")Integer userId){
 
         //In this function you need to upgrade the subscription to  its next level
