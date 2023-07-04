@@ -62,15 +62,14 @@ public class SubscriptionService {
             throw new Exception("Already the best Subscription");
         } else if (user.getSubscription().getSubscriptionType().equals(SubscriptionType.BASIC)) {
             user.getSubscription().setSubscriptionType(SubscriptionType.PRO);
-            user.getSubscription().setTotalAmountPaid(800+250*user.getSubscription().getNoOfScreensSubscribed());
-            amount=user.getSubscription().getTotalAmountPaid();
+            user.getSubscription().setTotalAmountPaid(800+(250*user.getSubscription().getNoOfScreensSubscribed()));
         }
         else if (user.getSubscription().getSubscriptionType().equals(SubscriptionType.PRO)){
             user.getSubscription().setSubscriptionType(SubscriptionType.ELITE);
             user.getSubscription().setTotalAmountPaid(1000+350*user.getSubscription().getNoOfScreensSubscribed());
-            amount=user.getSubscription().getTotalAmountPaid();
         }
         userRepository.save(user);
+        amount=user.getSubscription().getTotalAmountPaid();
         return amount;
     }
 
