@@ -36,6 +36,8 @@ public class WebSeriesService {
             throw new Exception("Series is already present");
         }
 
+        int rating=0;
+        int size=0;
         WebSeries webSeries=new WebSeries();
         webSeries.setSeriesName(webSeriesEntryDto.getSeriesName());
         webSeries.setAgeLimit(webSeriesEntryDto.getAgeLimit());
@@ -43,6 +45,13 @@ public class WebSeriesService {
         webSeries.setProductionHouse(productionHouse);
         webSeriesList.add(webSeries);
         productionHouse.setWebSeriesList(webSeriesList);
+        List<WebSeries> webSeriesList1=productionHouse.getWebSeriesList();
+        for(WebSeries webSeries2: webSeriesList1){
+            rating+=webSeries2.getRating();
+        }
+        size=productionHouse.getWebSeriesList().size();
+        int productionRating=rating/size;
+        productionHouse.setRatings(productionRating);
         //Saving
         productionHouseRepository.save(productionHouse);
         webSeriesRepository.save(webSeries);
